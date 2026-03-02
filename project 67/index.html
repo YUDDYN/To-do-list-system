@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+</head>
+<body>
+    <div>
+        <header>
+            <h1>TO DO LIST</h1>
+            <div>
+                <span id="currentDate"></span> • <span id="currentTime"></span>
+            </div>
+        </header>
+
+        <main>
+            <section>
+                <div>
+                    <textarea id="taskInput" placeholder="Enter your task..." rows="2"></textarea>
+                </div>
+
+                <div>
+                    <div>
+                        <label for="taskDate">Date</label>
+                        <input type="date" id="taskDate">
+                    </div>
+                    <div>
+                        <label for="taskTime">Time</label>
+                        <input type="time" id="taskTime">
+                    </div>
+                </div>
+
+                <div>
+                    <label for="reminderSelect">Reminder</label>
+                    <select id="reminderSelect">
+                        <option value="none">No Reminder</option>
+                        <option value="5min">5 minutes before</option>
+                        <option value="15min">15 minutes before</option>
+                        <option value="30min">30 minutes before</option>
+                        <option value="1hour">1 hour before</option>
+                        <option value="1day">1 day before</option>
+                    </select>
+                </div>
+
+                <div>
+                    <button id="addBtn">Add Task</button>
+                </div>
+            </section>
+
+            <section>
+                <button id="allBtn">All</button>
+                <button id="activeBtn">Active</button>
+                <button id="completedBtn">Completed</button>
+            </section>
+
+            <section>
+                <ul id="todoList">
+                    <li id="emptyState">No tasks yet. Add one to get started!</li>
+                </ul>
+            </section>
+
+            <footer>
+                <span id="taskCount">0 tasks</span>
+                <button id="clearBtn">Clear Completed</button>
+            </footer>
+        </main>
+    </div>
+</body>
+</html>
