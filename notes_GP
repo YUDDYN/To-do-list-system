@@ -1,0 +1,22 @@
+note update and revision
+
+1.memperbarui ui(karena tampilan kurang menarik)
+#warna dasar content(hitam) diganti dengan warna yg menyesuaikan nama todo
+#penulisan nama web di ganti lebih menarik
+#tampilan progres bar
+#menambahkan section untuk sistem streak di home page
+#side bar dan nav bar utama diganti bentuk nya jadi lebih menarik dan juga menambhak tepat di bawah nya diberi padang rumput hijau
+#memperbaiki progres bar nya agar tidak 100%
+#memperbaiki penamaan prioritas menjadi susah,lumayan,mudah
+#calender menyesuaikan asset/rcalender.aviv
+#saat masuk web,tidak langsung ke login.tapi di buat landing page
+
+2.add sistem
+#menambahkan sistem pop nontifikasi untuk fitur untk fitur notif dan pengingat deadline
+# membuat fitur streak untuk penyemangat user berupa, sebuah pohon yang awalnya kecil 
+dan jika user mengerjakan tugas/project, akan menambahkan token streak secara otomatis ke tanaman.
+Dan pohon akan tumbuh sesuai indikator yg dibutuhkan agar bisa berkembang/tumbuh
+#menambahkan  garis diagram untuk dapat melihat seberapa banyak user telah mengerjakan tugas
+#membuat top-navbar untuk landing page
+#menambahkan sistem upload tugas untuk memungkinkan pengguna menambahkan file ke dalam tugas.(agar user tidak perlu sulit lagi mencari tugas nya di luar apk)
+
