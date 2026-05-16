@@ -1,0 +1,138 @@
+/* =============================================
+   GLOBAL.CSS
+   Variabel, reset, dan style umum
+   ============================================= */
+
+   @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+   :root {
+     /* Warna utama */
+     --bg:        #111111;
+     --bg2:       #1a1a1a;
+     --bg3:       #272626;
+     --red:       #ffffff;
+     --red-dim:   rgba(147, 215, 108, 0.292);
+     --red-hover: #707070;
+     --green:     #4caf50;
+     --yellow:    #ffaa00;
+   
+     /* Teks */
+     --text:      #f0f0f0;
+     --text-dim:  #888888;
+     --text-muted:#555555;
+   
+     /* Border & radius */
+     --border:    rgba(255,255,255,0.08);
+     --radius:    14px;
+     --radius-sm: 8px;
+   
+     /* Shadow */
+     --shadow:    0 4px 24px rgba(0,0,0,0.3);
+
+     --bg-box: #2a2a2a;         /* Abu-abu gelap elegan */
+  --border-color: #3f3f3f;   /* Border default yang samar */
+  --focus-accent: #60a5fa;   /* Warna aksen saat fokus (biru lembut) */
+  --text-color: #e5e7eb;
+
+  --green-main: #4caf50;
+  --green-soft: #2e7d32;
+  --green-light: #81c784;
+
+  --bg-glass: rgba(255,255,255,0.05);
+  --bg-hover: rgba(76, 175, 80, 0.15);
+
+  --text: #ffffff;
+  --text-dim: #b0b0b0;
+
+  .light-mode {
+    --bg-glass: rgba(0,0,0,0.05);
+    --bg-hover: rgba(76, 175, 80, 0.2);
+  
+    --text: #1a1a1a;
+    --text-dim: #555;
+  }
+
+
+  }
+   
+   /* ── RESET ── */
+   *, *::before, *::after {
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+   }
+   
+   html { scroll-behavior: smooth; }
+   
+   body {
+     font-family: 'Plus Jakarta Sans', sans-serif;
+     background: var(--bg);
+     color: var(--text);
+     min-height: 100vh;
+     line-height: 1.6;
+     -webkit-font-smoothing: antialiased;
+   }
+   
+   a { text-decoration: none; color: inherit; }
+   /* a:hover { text-decoration: underline;} */
+   /* ── BADGE PRIORITY ── */
+   .badge {
+     font-size: 0.7rem;
+     padding: 3px 10px;
+     border-radius: 20px;
+     font-weight: 600;
+     display: inline-block;
+   }
+   
+   .badge-high   { background: rgba(230,57,70,0.15);  color: #e63946; }
+   .badge-medium { background: rgba(255,170,0,0.15);  color: #ffaa00; }
+   .badge-low    { background: rgba(76,175,80,0.15);  color: #4caf50; }
+   .badge-done   { background: rgba(76,175,80,0.15);  color: #4caf50; }
+   .badge-pending{ background: rgba(255,255,255,0.08);color: #888; }
+   
+   /* ── TOMBOL ── */
+   .btn {
+     display: inline-flex;
+     align-items: center;
+     gap: 8px;
+     padding: 10px 20px;
+     border-radius: var(--radius-sm);
+     font-size: 0.88rem;
+     font-weight: 600;
+     cursor: pointer;
+     border: none;
+     transition: all 0.2s;
+     font-family: inherit;
+   }
+   
+   .btn-red   { background: var(--red); color: white; }
+   .btn-red:hover { background: var(--red-hover); }
+   
+   .btn-ghost {
+     background: var(--bg3);
+     color: var(--text-dim);
+     border: 1px solid var(--border);
+   }
+   .btn-ghost:hover { color: var(--text); border-color: rgba(255,255,255,0.2); }
+   
+   /* ── LINK MERAH ── */
+   /* .link-red {
+     color: var(--red);
+     font-size: 0.82rem;
+     font-weight: 600; */
+   
+   .link-red:hover { text-decoration: underline; }
+   
+   /* ── KOSONG ── */
+   .kosong {
+     text-align: center;
+     padding: 32px;
+     color: var(--text-dim);
+     font-size: 0.9rem;
+   }
+   
+   /* ── SCROLLBAR ── */
+   ::-webkit-scrollbar { width: 6px; }
+   ::-webkit-scrollbar-track { background: var(--bg2); }
+   ::-webkit-scrollbar-thumb { background: var(--bg3); border-radius: 3px; }
+   ::-webkit-scrollbar-thumb:hover { background: #333; }

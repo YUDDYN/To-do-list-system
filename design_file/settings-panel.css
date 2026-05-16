@@ -1,0 +1,326 @@
+  /* Settings Panel (overlay + drawer) */
+
+  /* Light theme override (opsional) */
+  :root[data-theme="light"] {
+    --bg: #f6f7fb;
+    --bg2: #ffffff;
+    --bg3: #f0f2f6;
+    --text: #111827;
+    --text-dim: #6b7280;
+    --text-muted: #9ca3af;
+    --border: rgba(17, 24, 39, 0.10);
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.10);
+    --bg-box: #ffffff;
+    --border-color: rgba(17, 24, 39, 0.12);
+  }
+
+  .setting-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 160ms ease;
+    z-index: 998;
+  }
+
+  .setting-overlay.open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .setting-panel {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    height: calc(100vh - 32px);
+    width: min(420px, calc(100vw - 32px));
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    transform: translateX(12px);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 180ms ease, opacity 180ms ease;
+    z-index: 999;
+    overflow: auto;
+  }
+
+  .setting-panel.open {
+    transform: translateX(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .sp-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 16px 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .sp-header h2 {
+    font-size: 1rem;
+    font-weight: 800;
+  }
+
+  .sp-close {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text);
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+
+  .sp-label {
+    padding: 14px 16px 8px;
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .sp-profile {
+    margin: 0 16px;
+    padding: 12px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    background: var(--bg3);
+  }
+
+  .sp-avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+
+  .sp-profile-name {
+    font-weight: 800;
+    font-size: 0.95rem;
+  }
+  .sp-profile-role {
+    font-size: 0.78rem;
+    color: var(--text-dim);
+  }
+
+  .sp-edit-btn {
+    margin-left: auto;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--red);
+    padding: 8px 10px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  .sp-row,
+  .sp-theme-row {
+    margin: 0 16px;
+    padding: 12px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--bg3);
+  }
+  .sp-row + .sp-row {
+    margin-top: 10px;
+  }
+  .sp-row-icon {
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: rgba(255, 255, 255, 0.06);
+    flex-shrink: 0;
+  }
+  .sp-row-icon .material-symbols-outlined {
+    font-size: 18px;
+    color: var(--text-dim);
+  }
+  .sp-row-title {
+    font-weight: 800;
+    font-size: 0.9rem;
+  }
+  .sp-row-sub {
+    font-size: 0.78rem;
+    color: var(--text-dim);
+  }
+
+  .sp-toggle {
+    margin-left: auto;
+    position: relative;
+    width: 46px;
+    height: 26px;
+  }
+  .sp-toggle input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  .sp-toggle-slider {
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.10);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    transition: 160ms ease;
+  }
+  .sp-toggle-slider::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 3px;
+    width: 20px;
+    height: 20px;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    transform: translateY(-50%);
+    transition: 160ms ease;
+  }
+  .sp-toggle input:checked + .sp-toggle-slider {
+    background: var(--red-dim);
+  }
+  .sp-toggle input:checked + .sp-toggle-slider::after {
+    transform: translate(20px, -50%);
+  }
+
+  .sp-theme-options {
+    margin-left: auto;
+    display: flex;
+    gap: 8px;
+  }
+  .theme-btn {
+    border: 1px solid var(--border);
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--text);
+    border-radius: 12px;
+    padding: 8px 10px;
+    cursor: pointer;
+    font-weight: 800;
+    font-size: 0.78rem;
+  }
+  .theme-btn.active {
+    background: var(--red-dim);
+    border-color: rgba(255, 255, 255, 0.14);
+  }
+
+  .sp-divider {
+    height: 1px;
+    background: var(--border);
+    margin: 14px 16px 0;
+  }
+
+  .sp-about {
+    margin: 0 16px;
+  }
+  .sp-about-box {
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 12px;
+    background: var(--bg3);
+  }
+  .sp-about-app {
+    font-weight: 900;
+  }
+  .sp-about-ver,
+  .sp-about-desc {
+    color: var(--text-dim);
+    font-size: 0.82rem;
+  }
+  .sp-about-desc {
+    margin-top: 6px;
+  }
+
+  .sp-logout {
+    margin-top: 20px;
+  }
+
+  .sp-logout-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    width: 100%;
+    padding: 10px 14px;
+
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+
+    color: #ccc;
+    font-size: 14px;
+    font-weight: 500;
+
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .sp-logout-btn .material-symbols-outlined {
+    font-size: 20px;
+    opacity: 0.8;
+  }
+
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.5);
+    z-index: 99999;
+  }
+
+  .modal-content {
+    background: #1e1e1e;
+    padding: 20px;
+    border-radius: 12px;
+    width: 300px;
+    text-align: center;
+  }
+
+  .modal-actions {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .btn-cancel {
+    background: #444;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+  }
+
+  .btn-logout {
+    background: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+  }
+
