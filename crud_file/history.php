@@ -48,6 +48,38 @@ $total    = count($all);
 $high     = count(array_filter($all, fn($r) => $r['priority'] === 'high'));
 $thisWeek = count(array_filter($all, fn($r) => strtotime($r['activity_date']) >= strtotime('-7 days')));
 
+// Chart data: 7 days
+$chart_data_dates = [];
+$chart_data_counts = [];
+for ($i = 6; $i >= 0; $i--) {
+    $date = date('Y-m-d', strtotime("-$i days"));
+    $chart_data_dates[] = $date;
+    $chart_data_counts[$date] = 0;
+}
+
+$start_date_chart = date('Y-m-d', strtotime("-6 days"));
+$stmt_chart = $conn->prepare(
+    "SELECT activity_date, COUNT(*) as count 
+     FROM daily_activities 
+     WHERE user_id = ? AND status = 'done' AND activity_date >= ? 
+     GROUP BY activity_date"
+);
+$stmt_chart->bind_param('is', $id_user, $start_date_chart);
+$stmt_chart->execute();
+$res_chart = $stmt_chart->get_result();
+while ($row = $res_chart->fetch_assoc()) {
+    $d = $row['activity_date'];
+    if (isset($chart_data_counts[$d])) {
+        $chart_data_counts[$d] = (int)$row['count'];
+    }
+}
+
+$chart_labels_js = [];
+foreach ($chart_data_dates as $d) {
+    $chart_labels_js[] = date('d M', strtotime($d));
+}
+$chart_values_js = array_values($chart_data_counts);
+
 // Sidebar projects
 $stmt_sidebar = $conn->prepare(
     "SELECT id_project, nama_project, warna FROM projects WHERE user_id = ? ORDER BY id_project DESC"
@@ -68,6 +100,7 @@ $sidebar_projects = $stmt_sidebar->get_result();
   <link rel="stylesheet" href="../design/+tugas.css">
   <link rel="stylesheet" href="../design/history.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
   <script>
     (function() {
@@ -256,6 +289,16 @@ $sidebar_projects = $stmt_sidebar->get_result();
     <div class="stat-card">
       <div class="stat-label">Prioritas Tinggi</div>
       <div class="stat-value orange"><?= $high ?></div>
+    </div>
+  </div>
+
+  <!-- Chart Container -->
+  <div class="chart-container">
+    <div class="chart-header">
+      <span class="chart-title">Statistik Tugas (7 Hari Terakhir)</span>
+    </div>
+    <div class="chart-wrapper">
+      <canvas id="historyChart"></canvas>
     </div>
   </div>
 
@@ -451,6 +494,62 @@ document.querySelectorAll('.filter-chip[data-filter]').forEach((chip) => {
 });
 document.getElementById('priorityFilter')?.addEventListener('change', applyHistoryFilters);
 applyHistoryFilters();
+
+/* ── Chart.js ────────────────────────────────────────── */
+const ctxChart = document.getElementById('historyChart')?.getContext('2d');
+if (ctxChart) {
+  const gradient = ctxChart.createLinearGradient(0, 0, 0, 300);
+  gradient.addColorStop(0, 'rgba(76, 175, 80, 0.4)');
+  gradient.addColorStop(1, 'rgba(76, 175, 80, 0)');
+
+  new Chart(ctxChart, {
+    type: 'line',
+    data: {
+      labels: <?= json_encode($chart_labels_js) ?>,
+      datasets: [{
+        label: 'Tugas Selesai',
+        data: <?= json_encode($chart_values_js) ?>,
+        borderColor: '#4caf50',
+        backgroundColor: gradient,
+        borderWidth: 2,
+        pointBackgroundColor: '#1a1a1a',
+        pointBorderColor: '#4caf50',
+        pointBorderWidth: 2,
+        pointRadius: 4,
+        pointHoverRadius: 6,
+        fill: true,
+        tension: 0.4
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: '#272626',
+          titleColor: '#ffffff',
+          bodyColor: '#a0a0a0',
+          borderColor: 'rgba(255,255,255,0.08)',
+          borderWidth: 1,
+          padding: 10,
+          displayColors: false
+        }
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks: { stepSize: 1, color: '#888888' },
+          grid: { color: 'rgba(255,255,255,0.05)', drawBorder: false }
+        },
+        x: {
+          ticks: { color: '#888888' },
+          grid: { display: false, drawBorder: false }
+        }
+      }
+    }
+  });
+}
 
 /* ── Keyboard ────────────────────────────────────────── */
 document.addEventListener('keydown', (ev) => {

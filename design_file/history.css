@@ -67,6 +67,31 @@
     .stat-value.orange { color: #e67e22; }
     .stat-value.blue   { color: #5dade2; }
 
+    /* ── CHART CONTAINER ─────────────────────────── */
+    .chart-container {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px 24px;
+      margin-bottom: 28px;
+      animation: fadeUp .4s ease .1s both;
+    }
+
+    .chart-header {
+      margin-bottom: 16px;
+    }
+
+    .chart-title {
+      font-weight: 600;
+      font-size: 15px;
+    }
+
+    .chart-wrapper {
+      position: relative;
+      height: 250px;
+      width: 100%;
+    }
+
     /* ── FILTER BAR ──────────────────────────── */
     .filter-bar {
       display: flex;
