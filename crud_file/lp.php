@@ -78,7 +78,7 @@ session_start();
 
    <main class="relative z-10 flex flex-col lg:flex-row items-center justify-center px-8 md:px-16 gap-8 lg:gap-16" style="min-height: calc(100% - 88px); padding-bottom: 80px;"><div class="flex-1 max-w-xl text-center lg:text-left">
      <h1 id="heading" class="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight fade-in fade-in-d1" style="text-shadow: 0 0 40px rgba(34,197,94,0.2);">Grow Your Productivity</h1>
-     <p id="subheading" class="mt-5 text-lg md:text-xl text-emerald-200/70 font-light fade-in fade-in-d2">Complete your tasks and watch your plant grow.</p>
+     <p id="subheading" class="mt-5 text-lg md:text-xl text-emerald-200/70 font-light fade-in fade-in-d2">Complete your task and see the growth of the tree and yourself.</p>
      <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start fade-in fade-in-d3"><button id="btn-cta" class="px-8 py-3.5 bg-gradient-to-r from-emerald-600 to-green-500 text-white font-medium rounded-full hover:from-emerald-500 hover:to-green-400 transition-all duration-300 shadow-xl shadow-emerald-900/50 hover:shadow-emerald-700/50 hover:-translate-y-0.5"> Get Started </button> <button id="btn-login" class="px-8 py-3.5 border border-emerald-700/50 text-emerald-300 font-medium rounded-full hover:bg-emerald-950/40 hover:border-emerald-500 transition-all duration-300"> Login </button>
      </div><div class="mt-10 flex flex-wrap gap-6 justify-center lg:justify-start fade-in fade-in-d4">
       <div class="flex items-center gap-2 text-emerald-400/70 text-sm"><i data-lucide="check-circle" style="width:16px;height:16px;"></i> <span>Task Management</span>
