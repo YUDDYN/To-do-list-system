@@ -1,0 +1,148 @@
+/* =============================================
+   AUTH.CSS
+   Khusus untuk login.php & register.php
+   ============================================= */
+
+/* ── LAYOUT ── */
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: var(--bg);
+  margin: 0; /* Tambahan sedikit reset margin */
+}
+
+/* ── CARD ── */
+.auth-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 40px;
+  width: 100%;
+  max-width: 420px;
+  box-sizing: border-box; /* Agar padding tidak merusak max-width */
+}
+
+/* ── LOGO ── */
+.auth-logo {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.auth-logo-icon {
+  width: 56px; height: 56px;
+  background: var(--red);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  margin: 0 auto 14px;
+}
+
+.auth-logo h1 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 0; /* Menghilangkan margin bawaan h1 */
+}
+
+.auth-logo p {
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  margin-top: 4px;
+}
+
+/* ── FORM ── */
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--text);
+}
+
+.form-group input {
+  width: 100%;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 12px 16px;
+  font-size: 0.9rem;
+  color: var(--text);
+  font-family: inherit;
+  transition: border-color 0.2s;
+  outline: none;
+  box-sizing: border-box; /* Mencegah input melebar ke luar */
+}
+
+.form-group input:focus {
+  border-color: var(--red);
+}
+
+.form-group input::placeholder {
+  color: var(--text-muted);
+}
+
+/* ── BUTTON SUBMIT ── */
+.btn-submit {
+  width: 100%;
+  background: rgba(147, 215, 108, 0.292); /* Memperbaiki ;; yang kelebihan */
+  color: white;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 13px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.2s;
+  margin-top: 8px;
+}
+
+.btn-submit:hover { 
+  background: var(--red-hover); 
+}
+
+/* ── ALERT ── */
+.alert-error {
+  background: rgba(230,57,70,0.1);
+  border: 1px solid rgba(230,57,70,0.3);
+  border-radius: var(--radius-sm);
+  padding: 12px 16px;
+  font-size: 0.85rem;
+  color: #e63946;
+  margin-bottom: 20px;
+}
+
+.alert-success {
+  background: rgba(76,175,80,0.1);
+  border: 1px solid rgba(76,175,80,0.3);
+  border-radius: var(--radius-sm);
+  padding: 12px 16px;
+  font-size: 0.85rem;
+  color: #4caf50;
+  margin-bottom: 20px;
+}
+
+/* ── FOOTER LINK ── */
+.auth-footer {
+  text-align: center;
+  margin-top: 24px;
+  font-size: 0.85rem;
+  color: var(--text-dim);
+}
+
+.auth-footer a {
+  color: var(--red);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.auth-footer a:hover { 
+  text-decoration: underline; 
+}

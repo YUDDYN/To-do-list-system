@@ -1,0 +1,188 @@
+/* =============================================
+   FORM.CSS
+   Khusus untuk tambah.php & edit
+   ============================================= */
+
+/* ── LAYOUT ── */
+body { 
+  margin: 0;
+  padding: 0;
+}
+
+.dashboard-wrapper {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Sidebar styling diasumsikan sudah ada di dashboard.css,
+ namun kita pastikan main-content mengisi sisa layar */
+.main-content {
+  flex: 1;
+  padding: 40px;
+  box-sizing: border-box;
+}
+
+/* ── HEADER ── */
+.form-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 32px; /* Diperbaiki: sebelumnya 1000px */
+}
+
+.form-header h1 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin: 0;
+  color: var(--text);
+}
+
+.btn-back {
+  display: inline-block;
+  color: var(--text-dim);
+  font-size: 0.88rem;
+  font-weight: 600;
+  transition: color 0.2s;
+  text-decoration: none;
+  padding: 10px 16px;
+  border-radius: var(--radius-sm);
+  background: var(--bg3);
+  border: 1px solid var(--border);
+}
+
+.btn-back:hover { 
+  color: var(--text); 
+}
+
+/* ── CARD FORM ── */
+.form-card {
+  display: flex;
+  margin-left: 450px;
+  margin-top: 50px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 45px;
+  max-width: 700px; /* Diperbaiki: agar muat untuk grid 2 kolom */
+  /* width: 100%; */
+  box-sizing: border-box;
+}
+
+/* ── FORM GROUP ── */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--text);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  font-size: 0.9rem;
+  color: var(--text);
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.2s;
+  box-sizing: border-box; /* Diperbaiki: agar input tidak keluar kotak */
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--red);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: var(--text-muted);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 90px;
+}
+
+.form-group select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23888' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 36px;
+}
+
+/* ── GRID 2 KOLOM ── */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* ── LABEL CUSTOM ── */
+.label-custom {
+  margin-top: 10px;
+  display: none;
+}
+
+/* ── ACTIONS ── */
+.form-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.btn-simpan {
+  background: #272626;
+  color: #c6c6c6;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 12px 28px;
+  font-size: 0.92rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.2s;
+}
+
+.btn-simpan:hover { 
+  background:  rgba(147, 215, 108, 0.292);
+}
+
+.btn-batal {
+  background: #780909;
+  color: var(--text-dim);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 12px 24px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.2s;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
+
+.btn-batal:hover { 
+  color: var(--text); 
+  border-color: rgba(255,255,255,0.2); 
+}
+
+/* Responsif untuk HP: Grid jadi 1 kolom ke bawah */
+@media (max-width: 768px) {
+  .form-grid {
+      grid-template-columns: 1fr;
+  }
+}

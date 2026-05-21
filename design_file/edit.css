@@ -1,0 +1,194 @@
+    .edit-wrapper {
+      max-width: 760px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    
+    .edit-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 30px;
+    }
+    
+    .btn-back {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px; height: 40px;
+      border-radius: 12px;
+      background: var(--bg-elevated, #1c1c1c);
+      color: var(--text-muted, #888);
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+    
+    .btn-back:hover {
+      background: rgba(107, 203, 119, 0.15);
+      color: #6bcb77;
+    }
+    
+    .edit-title h1 {
+      margin: 0;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--text-primary, #f0f0f0);
+    }
+    
+    .edit-title p {
+      margin: 4px 0 0 0;
+      font-size: 0.85rem;
+      color: var(--text-muted, #888);
+    }
+
+    .edit-card {
+      background: #1a1a1a;
+      border: 1px solid #2e2e2e;
+      border-radius: 16px;
+      padding: 32px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    }
+
+    .form-section-title {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #6bcb77;
+      margin: 28px 0 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .form-section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #2e2e2e;
+    }
+    .form-section-title:first-child { margin-top: 0; }
+
+    /* Elemen Form (Sama persis dengan modal edit index) */
+    .form-group { margin-bottom: 20px; }
+    .form-row { display: flex; gap: 16px; }
+    .form-row .form-group { flex: 1; min-width: 0; }
+    
+    .form-label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #ccc;
+      margin-bottom: 8px;
+    }
+    
+    .form-input, .form-select, .form-textarea {
+      width: 100%;
+      background: #111;
+      border: 1px solid #2e2e2e;
+      border-radius: 10px;
+      color: #e8e8e8;
+      font-size: 0.92rem;
+      padding: 12px 16px;
+      outline: none;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+    
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      border-color: #6bcb77;
+      box-shadow: 0 0 0 3px rgba(107, 203, 119, 0.15);
+    }
+    
+    .form-textarea { resize: vertical; min-height: 100px; }
+    
+    .select-wrap { position: relative; }
+    .form-select {
+      appearance: none; -webkit-appearance: none; cursor: pointer; padding-right: 40px;
+    }
+    .select-arrow {
+      position: absolute; right: 16px; top: 50%; transform: translateY(-50%);
+      color: #666; font-size: 0.75rem; pointer-events: none;
+    }
+    input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(0.6); cursor: pointer; }
+
+    /* Area File Upload */
+    .file-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #111;
+      border: 1px solid #2e2e2e;
+      border-radius: 10px;
+      padding: 10px 16px;
+      margin-bottom: 12px;
+      text-decoration: none;
+      font-size: 0.85rem;
+      color: #ccc;
+      transition: all 0.2s;
+    }
+    .file-chip:hover {
+      border-color: #444; background: #181818; color: #fff;
+    }
+    
+    .upload-zone {
+      border: 1.5px dashed #333;
+      border-radius: 10px;
+      padding: 24px;
+      text-align: center;
+      background: #111;
+      cursor: pointer;
+      transition: all 0.2s;
+      position: relative;
+    }
+    .upload-zone:hover { border-color: #6bcb77; background: rgba(107, 203, 119, 0.05); }
+    .upload-zone input[type="file"] { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; }
+    .upload-msg { font-size: 0.85rem; color: #888; }
+    .upload-msg span { color: #6bcb77; font-weight: 500; }
+    
+    #filePreviewName { font-weight: 600; color: #fff; margin-top: 8px; display: none; }
+
+    /* Buttons */
+    .form-actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 36px;
+      padding-top: 24px;
+      border-top: 1px solid #2e2e2e;
+    }
+    
+    .btn-simpan {
+      background: #2d5a3d;
+      color: #e8f5ec;
+      border: 1px solid #3d7a53;
+      border-radius: 10px;
+      padding: 12px 24px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+      flex: 1;
+    }
+    .btn-simpan:hover { background: #3a6e4a; transform: translateY(-1px); }
+    
+    .btn-batal {
+      background: transparent;
+      color: #888;
+      border: 1px solid #2e2e2e;
+      border-radius: 10px;
+      padding: 12px 24px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .btn-batal:hover { background: #222; color: #ccc; }
+
+    /* Responsif */
+    @media (max-width: 600px) {
+      .form-row { flex-direction: column; gap: 0; }
+    }

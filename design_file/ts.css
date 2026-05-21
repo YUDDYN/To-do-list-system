@@ -1,0 +1,243 @@
+.streak-card {
+      background: linear-gradient(135deg, #0f1f12 0%, #162a1a 60%, #1a3320 100%);
+      border: 1.5px solid rgba(76, 175, 80, 0.25);
+      border-radius: 20px;
+      padding: 28px 32px;
+      margin-bottom: 28px;
+      /* margin-left: 25px; */
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 32px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.04);
+    }
+    /* glow ambient di belakang tanaman */
+    .streak-card::before {
+      content: '';
+      position: absolute;
+      left: 60px; top: 50%;
+      transform: translate(-50%, -50%);
+      width: 180px; height: 180px;
+      background: radial-gradient(circle, rgba(76,175,80,.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    /* sparkle dots dekoratif */
+    .streak-card::after {
+      content: '✦ ✦';
+      position: absolute;
+      top: 18px; left: 30px;
+      font-size: 8px;
+      color: rgba(165,214,167,.35);
+      letter-spacing: 12px;
+      pointer-events: none;
+    }
+
+    .streak-plant-wrap {
+      flex-shrink: 0;
+      width: 130px;
+      height: 130px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: width .24s ease, height .24s ease;
+    }
+    .streak-plant-wrap svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+    .streak-plant-wrap.level-max {
+      width: min(50vw, 45vh);
+      height: min(50vw, 45vh);
+      max-width: 520px;
+      max-height: 520px;
+    }
+
+      justify-content: center;
+      animation: floatPlant 3.5s ease-in-out infinite;
+    
+    @keyframes floatPlant {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-6px); }
+    }
+
+    .streak-info { flex: 1; min-width: 0; }
+    .streak-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #d4f0d8;
+      margin: 0 0 4px;
+      letter-spacing: .01em;
+    }
+    .streak-subtitle {
+      font-size: .82rem;
+      color: #6b9e72;
+      margin: 0 0 20px;
+    }
+
+    /* Stat chips */
+    .streak-stats {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+    .streak-stat {
+      background: rgba(0,0,0,.3);
+      border: 1px solid rgba(76,175,80,.2);
+      border-radius: 12px;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 90px;
+    }
+    .streak-stat-icon { font-size: 1.2rem; }
+    .streak-stat-val {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #d4f0d8;
+      line-height: 1;
+    }
+    .streak-stat-label {
+      font-size: .72rem;
+      color: #6b9e72;
+      margin-top: 2px;
+    }
+
+    /* Progress bar */
+    .streak-progress-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+    .streak-progress-label {
+      font-size: .8rem;
+      color: #8aba8f;
+    }
+    .streak-progress-frac {
+      font-size: .8rem;
+      color: #6b9e72;
+    }
+    .streak-bar-wrap {
+      background: rgba(0,0,0,.4);
+      border-radius: 99px;
+      height: 8px;
+      overflow: hidden;
+      margin-bottom: 16px;
+    }
+    .streak-bar-fill {
+      height: 100%;
+      border-radius: 99px;
+      background: linear-gradient(90deg, #4CAF50, #81C784);
+      transition: width .7s cubic-bezier(.4,0,.2,1);
+      box-shadow: 0 0 8px rgba(76,175,80,.5);
+    }
+
+    /* "Siram" button */
+    .streak-water-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #2d5a3d 0%, #3a6e4a 100%);
+      border: 1px solid rgba(76,175,80,.4);
+      border-radius: 10px;
+      padding: 9px 20px;
+      color: #c8e6c9;
+      font-size: .88rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background .2s, transform .15s, box-shadow .2s;
+      font-family: inherit;
+    }
+    .streak-water-btn:hover {
+      background: linear-gradient(135deg, #3a6e4a 0%, #4a8e5a 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(76,175,80,.2);
+    }
+    .streak-water-btn:active { transform: translateY(0); }
+
+    /* Level badge pojok kanan atas */
+    .streak-level-badge {
+      position: absolute;
+      top: 18px; right: 20px;
+      background: rgba(76,175,80,.15);
+      border: 1px solid rgba(76,175,80,.3);
+      border-radius: 20px;
+      padding: 5px 12px;
+      font-size: .78rem;
+      font-weight: 600;
+      color: #81C784;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* ── Toast notifikasi ── */
+    #streakToast {
+      position: fixed;
+      bottom: 32px; right: 32px;
+      background: #1e3a22;
+      border: 1px solid rgba(76,175,80,.4);
+      border-radius: 14px;
+      padding: 14px 22px;
+      color: #c8e6c9;
+      font-size: .9rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 8px 32px rgba(0,0,0,.5);
+      z-index: 9999;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity .35s, transform .35s;
+      pointer-events: none;
+    }
+    #streakToast.show { opacity: 1; transform: translateY(0); }
+
+    /* ── Progress item ── */
+    .progress-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 8px;
+      border-radius: 8px;
+      margin-bottom: 4px;
+      cursor: default;
+      transition: background 0.2s;
+    }
+    .progress-item:hover { background: var(--bg-hover, #1a1a1a); }
+    .progress-circle {
+      position: relative; flex-shrink: 0; width: 44px; height: 44px;
+    }
+    .progress-circle svg { display: block; }
+    .pct {
+      position: absolute; top:50%; left:50%;
+      transform:translate(-50%,-50%);
+      font-size:9px; font-weight:700; line-height:1;
+    }
+    .progress-info { flex:1; min-width:0; }
+    .progress-name {
+      font-size:12px; font-weight:500;
+      color:var(--text-primary,#f0f0f0);
+      white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+    }
+    .progress-sub { font-size:11px; color:var(--text-muted,#666); margin-top:2px; }
+    .progress-sub.done { color:#6bcb77; }
+    .progress-edit-btn {
+      display:flex; align-items:center; justify-content:center;
+      width:28px; height:28px; border-radius:6px;
+      background:var(--bg-elevated,#1c1c1c); color:var(--text-muted,#666);
+      text-decoration:none; flex-shrink:0; transition:background .2s,color .2s;
+    }
+    .progress-edit-btn:hover { background:rgba(107,203,119,.15); color:#6bcb77; }
+    .progress-done-mark {
+      width:28px; height:28px; border-radius:50%;
+      background:rgba(107,203,119,.15); color:#6bcb77;
+      display:flex; align-items:center; justify-content:center;
+      font-size:13px; font-weight:700; flex-shrink:0;
+    }

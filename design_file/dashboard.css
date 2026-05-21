@@ -1,0 +1,772 @@
+/* =============================================
+          DASHBOARD.CSS
+          Khusus untuk index.php
+          ============================================= */
+
+/* ── LAYOUT ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;         /* Menghilangkan margin bawaan browser */
+  padding: 0;
+  display: flex;
+  overflow-x: hidden; /* Mencegah scrollbar horizontal muncul di body */
+}
+.main {
+  margin-left: 220px; /* Sesuai lebar sidebar kamu */
+  flex: 1;
+  display: flex;     /* Menyusun konten utama dan right bar bersisian */
+  min-width: 0;      /* PENTING: Mengizinkan area ini menyusut secara dinamis */
+}
+
+/* ── SIDEBAR ── */
+.sidebar {
+  width: 220px;
+  background: var(--bg2);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  padding: 24px 16px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 100;
+}
+
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px;
+  margin-bottom: 32px;
+}
+
+.logo-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.logo-text {
+  font-size: 0.9rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 5px 12px;
+  border-radius: 10px;
+  color: var(--text-dim);
+  font-size: 0.75rem;
+  font-weight: 500;
+  transition: all 0.2s;
+  margin-bottom: 4px;
+}
+
+.nav-item:hover {
+  background: var(--bg3);
+  color: var(--text);
+}
+.nav-item.active {
+  background: var(--red-dim);
+  color: #8db86a;
+}
+.nav-item .icon {
+  font-size: 0.9rem;
+  width: 15px;
+  text-align: center;
+}
+.nav-item.nav-search .material-symbols-outlined {
+  font-size: 18px;
+  width: 18px;
+  text-align: center;
+}
+
+.sidebar-bottom {
+  margin-top: auto;
+}
+
+/* ── MY PROJECT (single bar + actions + dropdown) ── */
+.project-nav-wrap {
+  margin-bottom: 6px;
+}
+
+.project-nav {
+  width: 100%;
+  margin-top: 20px;
+  user-select: none;
+  position: relative;
+}
+
+.project-nav-label {
+  flex: 1;
+}
+
+.project-nav-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  opacity: 0;
+  transform: translateX(4px);
+  pointer-events: none;
+  transition:
+    opacity 160ms ease,
+    transform 160ms ease;
+}
+
+.project-nav:hover .project-nav-actions,
+.project-nav:focus .project-nav-actions,
+.project-nav:focus-within .project-nav-actions,
+.project-nav:active .project-nav-actions {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+  color: #8db86a;
+}
+
+.project-action-btn {
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.project-action-btn:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+.project-action-btn .material-symbols-outlined {
+  font-size: 18px;
+  color: var(--text-dim);
+}
+.project-nav:hover .project-action-btn .material-symbols-outlined,
+.project-nav:focus-within .project-action-btn .material-symbols-outlined {
+  color: var(--text);
+}
+
+.project-dropdown {
+  margin: 6px 0 10px 28px;
+  padding: 8px 10px;
+  border-left: 1px solid var(--border);
+}
+
+.project-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 8px;
+  border-radius: 10px;
+  color: var(--text-dim);
+  font-size: 0.78rem;
+  transition:
+    background 160ms ease,
+    color 160ms ease;
+}
+
+.project-item:hover {
+  background: var(--bg3);
+  color: var(--text);
+}
+
+.project-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  flex-shrink: 0;
+}
+
+.project-empty-title {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.project-empty-sub {
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  line-height: 1.4;
+}
+
+/* Panel tambah tugas tampil di tengah */
+#addTaskPanel {
+  top: 50%;
+  left: 50%;
+  right: auto;
+  height: auto;
+  max-height: calc(100vh - 32px);
+  width: min(560px, calc(100vw - 32px));
+  transform: translate(-50%, -48%) scale(0.98);
+}
+
+#addTaskPanel.open {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+#addProjectPanel,
+#addProjectTaskPanel {
+  top: 50%;
+  left: 50%;
+  right: auto;
+  height: auto;
+  max-height: calc(100vh - 32px);
+  width: min(560px, calc(100vw - 32px));
+  transform: translate(-50%, -48%) scale(0.98);
+}
+
+#addProjectPanel.open,
+#addProjectTaskPanel.open {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.nav-item.logout:hover {
+  background: rgba(147, 215, 108, 0.292);
+  color: var(--red);
+}
+
+/* ── CONTENT ── */
+.content {
+  flex: 1;       
+  min-width: 0;  
+  padding: 32px; 
+}
+
+/* ── TOPBAR ── */
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.title h1 {
+  font-size: 28px;
+  font-weight: 600;
+  color: #fff;
+  margin: 0;
+}
+
+.sub-title {
+  font-size: 14px;
+  color: #717171;
+  margin-top: 4px;
+  margin-bottom: 24px;
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 180px;
+  padding: 5px 12px;
+  background: var(--bg-box);
+  border: 1px solid var(--border-color);
+  border-radius: 8px; /* Lebih bulat agar terlihat modern */
+
+  /* Transisi halus saat di-klik */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: text;
+}
+
+.search-box:focus-within {
+  border-color: var(--focus-accent);
+  background: #323232; /* Sedikit lebih terang saat aktif */
+
+  /* Bayangan halus (Glow effect) */
+  box-shadow:
+    0 0 0 4px rgba(96, 165, 250, 0.15),
+    0 4px 12px rgba(0, 0, 0, 0.2);
+
+  /* Sedikit melebar agar ada efek dinamis */
+  transform: translateY(-1px);
+}
+.search-box input {
+  /* Menghapus paksa background putih */
+  background: transparent !important;
+  background-color: transparent !important;
+
+  /* Menghapus garis pinggir */
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+
+  /* Menyesuaikan teks */
+  color: inherit !important;
+  font-family: inherit;
+  font-size: 0.8rem;
+  width: 100%;
+  padding: 0; /* Menghapus padding bawaan input */
+}
+
+.notif-btn {
+  width: 38px;
+  height: 38px;
+  background: var(--bg2);
+  border: 5px solid var(--border);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.1rem;
+}
+
+/* ── SECTION CARD ── */
+.section {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  margin-bottom: 24px;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.section-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+/* ── TABLE ── */
+.tugas-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-left: 10px;
+}
+
+.aksi-col {
+  text-align: left; /* biar gak ke kanan */
+}
+
+.aksi-col .btn-action {
+  margin-right: 0px;
+}
+
+.tugas-table th {
+  text-align: left;
+  font-size: 0.78rem;
+  color: var(--text-dim);
+  font-weight: 500;
+  padding: 12px 16px; /* tambah padding kiri kanan */
+  border-bottom: 1px solid var(--border);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.tugas-table td {
+  padding: 16px 1px; /* tambah padding kiri kanan */
+  /* border-bottom: 1px solid rgb(0, 0, 0); */
+  font-size: 0.9rem;
+}
+
+.tugas-table tr:hover td {
+  background: rgba(0, 0, 0, 0.02); /* efek hover */
+}
+
+.tugas-name {
+  font-weight: 600;
+}
+.tugas-desc {
+  color: var(--text-dim);
+  font-size: 0.85rem;
+}
+
+.project-underpath {
+  margin-top: 6px;
+  color: var(--text-dim);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.btn-action {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: none;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-right: 6px;
+  transition: 0.2s;
+}
+
+/* Tambah tugas */
+.btn-task {
+  background: rgba(147, 215, 108, 0.2);
+  color: #93d76c;
+}
+
+.btn-task:hover {
+  background: rgba(147, 215, 108, 0.4);
+}
+
+/* Section */
+.btn-section {
+  background: rgba(96, 165, 250, 0.2);
+  color: #60a5fa;
+}
+
+.btn-section:hover {
+  background: rgba(96, 165, 250, 0.4);
+}
+
+/* Hapus */
+.btn-delete {
+  background: rgba(255, 99, 99, 0.2);
+  color: #ff6363;
+}
+
+.btn-delete:hover {
+  background: rgba(255, 99, 99, 0.4);
+}
+
+/* container biar rapi */
+td {
+  white-space: nowrap;
+}
+
+/* base button */
+.aksi-btn {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-right: 6px;
+
+  font-size: 13px;
+  text-decoration: none;
+  border-radius: 6px;
+
+  background: rgba(255, 255, 255, 0.05);
+  color: #ccc;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  transition: all 0.2s ease;
+}
+
+/* hover umum */
+.aksi-btn:hover {
+  transform: translateY(-1px);
+  color: white;
+}
+
+/* tombol Edit */
+.aksi-btn:nth-child(1):hover {
+  background: #2196f3;
+  border-color: #2196f3;
+}
+
+/* tombol Done */
+.aksi-btn:nth-child(2):hover {
+  background: #4caf50;
+  border-color: #4caf50;
+}
+
+/* tombol Hapus */
+.aksi-btn.hapus:hover {
+  background: #ff4d4d;
+  border-color: #ff4d4d;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+}
+
+.modal-content {
+  background: #1e1e1e;
+  padding: 20px;
+  border-radius: 10px;
+  width: 280px;
+  text-align: center;
+}
+
+.modal-actions {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-cancel {
+  background: #444;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-delete {
+  background: #ff4d4d;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+/* klik */
+.aksi-btn:active {
+  transform: scale(0.95);
+}
+/* ── RIGHT PANEL ── */
+.right-panel {
+  width: 300px;
+  padding: 32px 20px;
+  flex-shrink: 0;
+  border-left: 2px solid #2f2f2f;
+}
+
+/* Profile */
+.profile-card {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.profile-avatar {
+  width: 72px;
+  height: 72px;
+  background: var(--bg3);
+  border-radius: 50%;
+  margin: 0 auto 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  border: 2px solid var(--border);
+}
+
+.profile-name {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.profile-loc {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+}
+
+/* Kalender */
+.calendar {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  margin-bottom: 24px;
+}
+
+.cal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.cal-title {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.cal-nav {
+  display: flex;
+  gap: 8px;
+}
+
+.cal-nav button {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: background 0.2s;
+}
+
+.cal-nav button:hover {
+  background: #333;
+}
+
+.cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  text-align: center;
+}
+
+.cal-day-name {
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  padding: 4px 0;
+  font-weight: 600;
+}
+
+.cal-day {
+  font-size: 0.82rem;
+  padding: 6px 4px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.cal-day:hover {
+  background: var(--bg3);
+}
+
+.cal-day.today {
+  background: #70ae83;
+  color: white;
+  font-weight: 700;
+  border-radius: 10px;
+}
+
+.cal-day.empty {
+  cursor: default;
+}
+
+/* Progress */
+/* ── PROGRESS SECTION ── */
+.progress-section {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+}
+
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.progress-title {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.progress-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+  transition: all 0.2s ease;
+  text-decoration: none; /* Jika ini link */
+  color: inherit;
+}
+
+.progress-item:last-child {
+  border-bottom: none;
+}
+
+.progress-item:hover {
+  background-color: rgba(0, 0, 0, 0.02); /* Feedback halus saat hover */
+  border-radius: 8px;
+  padding-left: 5px; /* Sedikit efek geser */
+}
+
+.progress-item:hover .progress-name {
+  color: #787878; /* Warna biru saat hover agar lebih interaktif */
+}
+
+/* ── PROGRESS CIRCLE (SVG VERSION) ── */
+.progress-circle {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.progress-circle svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.progress-circle .pct {
+  position: absolute;
+  /* Gunakan centering mutlak */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 0.65rem; /* Sedikit lebih besar agar terbaca */
+  font-weight: 800;
+  color: var(--text-main);
+  line-height: 1; /* KUNCI: Menghilangkan spasi antar baris agar tidak miring */
+  margin: 0;
+  pointer-events: none;
+}
+
+/* ── INFO & TEXT ── */
+.progress-info {
+  flex: 1;
+}
+
+.progress-name {
+  font-size: 0.88rem;
+  font-weight: 600;
+  transition: color 0.2s;
+  display: block;
+}
+
+.progress-sub {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  margin-top: 2px;
+}
+
+.progress-arrow {
+  color: var(--text-dim);
+  font-size: 0.8rem;
+  opacity: 0.5;
+  transition: transform 0.2s;
+}
+
+.progress-item:hover .progress-arrow {
+  transform: translateX(3px);
+  opacity: 1;
+}
